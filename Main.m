@@ -4,6 +4,7 @@ function [ inventory,  machine10, state_matrix1, machine20, state_matrix2] = Mai
 % buffer_capacity = 10;
 % mu1 = 4;
 % mu2 = 2;
+% addin a test line 
 
 [inventory, T2, machine10, state_matrix1, machine20, state_matrix2] = Inventory(run_duration, mu1, mu2, buffer_capacity);
 hold;
