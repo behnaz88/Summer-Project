@@ -187,9 +187,9 @@ function [ critical_times,slopes, inventory_table, T2,machine1,state_matrix1,mac
 
 
     %---------------------------Discrete Simulatoin----------------------
-    discrete_simulation_time = discrete_simulation(machine1, machine2, mu1, mu2, run_duration, buffer_capacity, 5, 0.01);
+    discrete_simulation_time = discrete_simulation(machine1, machine2, mu1, mu2, run_duration, buffer_capacity, 5, 0.001);
     
-    %fprintf(discrete_simulation_time);
+    fprintf('Discrete Simulation Tooks: %d seconds',discrete_simulation_time);
     
                
         

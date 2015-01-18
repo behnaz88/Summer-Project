@@ -1,4 +1,4 @@
-function [computation_time] = discrete_simulation(machine1, machine2, run_duration, buffer_capacity, x0, dt)
+function computation_time = discrete_simulation(machine1, machine2, mu1, mu2, run_duration, buffer_capacity, x0, dt)
 
     tic;
     
@@ -7,14 +7,17 @@ function [computation_time] = discrete_simulation(machine1, machine2, run_durati
     
     %dt = 0.001;
     T = 0:dt:run_duration;
-    inventory = zeros(length(T));
+    inventory = zeros(1,length(T));
 
     iteration1 = 1;
     iteration2 = 1;
     counter = 1;
     inventory(counter) = x0;
+    
+    m1 = length(machine1.time);
+    m2 = length(machine2.time);
 
-    for t=T
+    for t=0 : dt : run_duration-dt
         counter = counter + 1;
         
         
@@ -37,11 +40,15 @@ function [computation_time] = discrete_simulation(machine1, machine2, run_durati
         
         inventory(counter) = temp;
         
-        if t+dt >= machine1.time(iteration1)
-            iteration1 = iteration1 + 1;
+        if (iteration1 + 1) <= m1
+            if t+dt >= machine1.time(iteration1+1)
+                iteration1 = iteration1 + 1;
+            end
         end
-        if t+dt >= machine2.time(iteration2)
-            iteration2 = iteration2 + 1;
+        if (iteration2 + 1) <= m2
+            if t+dt >= machine2.time(iteration2+1)
+                iteration2 = iteration2 + 1;
+            end
         end
     end
     
